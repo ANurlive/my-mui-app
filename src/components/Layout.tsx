@@ -18,13 +18,16 @@ export default function Layout({ toggleTheme }: Props) {
     <>
       <AppBar position="static">
         <Toolbar>
-          <Typography>My MUI App</Typography>
+          <Typography sx={{ flexGrow: 1, marginRight: 16 }}>
+            My MUI App
+          </Typography>
           <Link to="/" style={{ color: 'white', marginRight: 16 }}>
             Home
           </Link>
           <Link to="/about" style={{ color: 'white', marginRight: 16 }}>
             About
           </Link>
+          <div style={{ flexGrow: 1 }} />
           <IconButton color="inherit" onClick={toggleTheme}>
             {theme.palette.mode === 'dark' ? <Brightness7 /> : <Brightness4 />}
           </IconButton>

@@ -11,7 +11,9 @@ import Home from './pages/Home';
 import About from './pages/About';
 
 export default function App() {
-  const [darkMode, setDarkMode] = useState(false);
+  const [darkMode, setDarkMode] = useState(
+    localStorage.getItem('theme') === 'dark'
+  );
 
   const theme = useMemo(
     () =>
@@ -31,7 +33,15 @@ export default function App() {
           <Route
             path="/"
             element={
-              <Layout toggleTheme={() => setDarkMode((prev) => !prev)} />
+              <Layout
+                toggleTheme={() =>
+                  setDarkMode((prev) => {
+                    const newMode = !prev;
+                    localStorage.setItem('theme', newMode ? 'dark' : 'light');
+                    return newMode;
+                  })
+                }
+              />
             }
           >
             <Route index element={<Home />} />
